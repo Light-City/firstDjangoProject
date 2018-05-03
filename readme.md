@@ -100,7 +100,7 @@ python manage.py migrate
 python manage.py createsuperuser
 ```
 
->此时运行python manage.py runserver 8088，然后http://localhost:8088/admin 登录账户后，会发现无表，此时需要对admin.py进行修改
+>此时运行python manage.py runserver 8000，然后http://localhost:8000/admin 登录账户后，会发现无表，此时需要对admin.py进行修改
 ```
 # admin.py
 from django.contrib import admin

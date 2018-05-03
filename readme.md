@@ -1,3 +1,5 @@
+
+### 原版
 ```html
 # 首先创建django项目，其项目目录如下：
 exa
@@ -122,16 +124,16 @@ http://127.0.0.1:8000/userInfor/
 
 ![](http://p20tr36iw.bkt.clouddn.com/sqli2.png)
 
-### 5.2更新版
+### 更新版
 
 >更新内容
 ```
 1.数据库后台修改了一行数据并添加了一行；
 2.增加show页面，将原先提交的数据可在另一个页面访问到
 3.删除数据并呈现操作
-
+4.更新数据并呈现数据
 ```
-#### 5.2.1show页面
+#### show页面
 >urls.py
 ```python
  path('show/', views.show),
@@ -173,7 +175,7 @@ def show(req):
 
 ![](http://p20tr36iw.bkt.clouddn.com/show.png)
 
-#### 5.2.2delData页面
+#### delData页面
 
 >urls.py
 
@@ -198,7 +200,7 @@ def delData(req):
 
 ![](http://p20tr36iw.bkt.clouddn.com/del.png)
 
-#### 5.2.3updateData页面
+#### updateData页面
 
 >urls.py
 
@@ -218,5 +220,4 @@ def updateData(req):
 ```
 
 >python manage.py runserver
-
 ![](http://p20tr36iw.bkt.clouddn.com/update.png)

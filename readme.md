@@ -1,3 +1,4 @@
+```
 # 首先创建django项目，其项目目录如下：
 exa
   ---dbreq
@@ -218,4 +219,4 @@ def updateData(req):
 
 >python manage.py runserver
 
-![](http://p20tr36iw.bkt.clouddn.com/update.png
+![](http://p20tr36iw.bkt.clouddn.com/update.png)

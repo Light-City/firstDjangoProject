@@ -1,5 +1,3 @@
-# 提交数据至数据库，并在后台管理操作
-```
 # 首先创建django项目，其项目目录如下：
 exa
   ---dbreq
@@ -100,7 +98,7 @@ python manage.py migrate
 python manage.py createsuperuser
 ```
 
->此时运行python manage.py runserver 8000，然后http://localhost:8000/admin 登录账户后，会发现无表，此时需要对admin.py进行修改
+>此时运行python manage.py runserver 8088，然后http://localhost:8088/admin 登录账户后，会发现无表，此时需要对admin.py进行修改
 ```
 # admin.py
 from django.contrib import admin
@@ -119,5 +117,105 @@ http://127.0.0.1:8000/userInfor/
 ```
 页面创建表，后台实时更新成功，如图！
 
-<img src="http://p20tr36iw.bkt.clouddn.com/sqli1.png" style="float:left"/>
-<img src="http://p20tr36iw.bkt.clouddn.com/sqli2.png" style="float:left"/>
+![](http://p20tr36iw.bkt.clouddn.com/sqli1.png)
+
+![](http://p20tr36iw.bkt.clouddn.com/sqli2.png)
+
+### 5.2更新版
+
+>更新内容
+```
+1.数据库后台修改了一行数据并添加了一行；
+2.增加show页面，将原先提交的数据可在另一个页面访问到
+3.删除数据并呈现操作
+
+```
+#### 5.2.1show页面
+>urls.py
+```python
+ path('show/', views.show),
+```
+
+>views.py
+```python
+def show(req):
+    info_list=models.UserInfor.objects.all() # 取出该表所有数据
+
+    return  render(req,'show.html',{'info_list':info_list})
+```
+
+
+>show.html
+
+```html
+<table border="1">
+    <thead>
+         <tr>
+            <td>姓名</td>
+            <td>性别</td>
+            <td>邮箱</td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for i in info_list %}
+            <tr>
+                <td>{{ i.username }}</td>
+                <td>{{ i.sex }}</td>
+                <td>{{ i.email }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+```
+>python manage.py runserver
+
+![](http://p20tr36iw.bkt.clouddn.com/show.png)
+
+#### 5.2.2delData页面
+
+>urls.py
+
+```python
+path('delData/', views.delData),
+```
+>views.py
+
+```python
+# 删除操作
+@csrf_exempt
+def delData(req):
+    # 删除数据
+    info_list = models.UserInfor.objects.filter(username='哈哈哈')
+    return render(req, "show.html", {"info_list": info_list})
+
+```
+
+
+>python manage.py runserver
+
+
+![](http://p20tr36iw.bkt.clouddn.com/del.png)
+
+#### 5.2.3updateData页面
+
+>urls.py
+
+```python
+path('updateData/', views.updateData),
+```
+>views.py
+
+```python
+# 修改操作
+@csrf_exempt
+def updateData(req):
+    models.UserInfor.objects.filter(username='哈哈哈').update(sex='女',email='yixiugai@163.com')
+    info_list = models.UserInfor.objects.all()
+    return render(req,"show.html",{"info_list":info_list})
+
+```
+
+>python manage.py runserver
+
+![](http://p20tr36iw.bkt.clouddn.com/update.png

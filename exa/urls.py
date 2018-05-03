@@ -19,4 +19,7 @@ from dbreq import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('userInfor/', views.userInfor),
+    path('show/', views.show),
+    path('delData/', views.delData),
+    path('updateData/', views.updateData),
 ]

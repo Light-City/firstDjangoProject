@@ -1,4 +1,4 @@
-```
+```html
 # 首先创建django项目，其项目目录如下：
 exa
   ---dbreq

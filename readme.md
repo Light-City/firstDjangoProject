@@ -220,4 +220,6 @@ def updateData(req):
 ```
 
 >python manage.py runserver
+
+
 ![](http://p20tr36iw.bkt.clouddn.com/update.png)
